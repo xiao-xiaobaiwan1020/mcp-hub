@@ -1,5 +1,9 @@
 # MCP 消息集线器（mcp-hub）
 
+[![CI](https://github.com/xiao-xiaobaiwan1020/mcp-hub/actions/workflows/ci.yml/badge.svg)](https://github.com/xiao-xiaobaiwan1020/mcp-hub/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue.svg)](pyproject.toml)
+
 多 Agent 注册、心跳、路由与消息转发的轻量集线器，按 **MCP 标准协议**（JSON-RPC 2.0 / Streamable HTTP）提供服务，纯 **asyncio** 异步实现。目标场景是监测平台里的多智能体协作：报告 Agent、OCR Agent、告警 Agent 各自注册上线，通过集线器互相投递任务与事件。
 
 ## 特性
@@ -217,4 +221,4 @@ pytest -q            # 26 passed
 
 ## 许可证
 
-MIT
+MIT，见 [LICENSE](LICENSE)。
