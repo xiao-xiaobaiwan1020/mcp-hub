@@ -29,4 +29,6 @@ include = ["mcp_hub*"]
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]
+# 让 `pytest`（而非 `python -m pytest`）也能 import 到 tests.conftest：把仓库根目录加入 sys.path
+pythonpath = ["."]
 filterwarnings = ["ignore::DeprecationWarning"]
