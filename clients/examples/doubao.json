@@ -1,0 +1,9 @@
+{
+  "name": "豆包",
+  "topics": ["report", "alarm"],
+  "capabilities": ["chat", "report"],
+  "metadata": {
+    "app": "Doubao Desktop",
+    "owner": "肖先生"
+  }
+}

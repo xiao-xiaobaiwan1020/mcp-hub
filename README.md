@@ -83,6 +83,20 @@ python examples/multi_agent_demo.py
 
 访问 <http://127.0.0.1:8765/docs> 可以看到管理接口的交互式文档。
 
+### 让别的智能体接入（本机常驻）
+
+- **登录自启**：`powershell -NoProfile -ExecutionPolicy Bypass -File deploy\install_autostart.ps1`
+  （在「启动」文件夹放一个隐藏窗口快捷方式，免管理员；卸载用 `deploy\uninstall_autostart.ps1`）
+- **通用客户端**：`clients\hub-agent.ps1`（PowerShell 零依赖，支持 register / heartbeat / send / fetch / poll / list）
+- **操作卡**：把 [`docs/AGENT_ONBOARDING.zh.md`](docs/AGENT_ONBOARDING.zh.md) 里对应的一段整段粘给其他智能体即可
+
+```powershell
+# 示例：注册一个叫 doubao 的 Agent，然后给它发消息
+powershell -File clients\hub-agent.ps1 register -AgentId doubao -SpecFile clients\examples\doubao.json
+powershell -File clients\hub-agent.ps1 send -AgentId doubao -Target minimax -PayloadFile clients\examples\task.json
+powershell -File clients\hub-agent.ps1 fetch -AgentId minimax
+```
+
 ## MCP 协议
 
 ### 端点
@@ -141,7 +155,7 @@ data: {"jsonrpc":"2.0","method":"notifications/message","params":{
 - 消息先写入目标 Agent 的**有界队列**（默认 200 条），队列满时丢弃最旧的一条并记 `dropped`。
 - 如果目标 Agent 当前有 SSE 连接，同时推入推送队列，实时送达；**推送不会移除队列里的副本**，所以「SSE 收到」和「`hub_fetch_messages` 拉到」只能二选一，不能混用同一条消息——推荐二选一：实时用 SSE，离线用拉取。
 - 广播默认不含发送者（`MCP_HUB_BROADCAST_INCLUDE_SENDER=1` 可改）。
-- 目标不存在或已离线时进入 `dropped`，发送方能在返回的 `DeliveryReport` 里看到。
+- 点对点投递只要目标 Agent **注册过**就会入队——即使心跳过期（显示离线），消息也会保留到它下次拉取；只有从未注册或已被清理的 `agent_id` 才计入 `dropped`。广播与主题只投给当前在线的 Agent。
 
 ## 心跳与离线
 

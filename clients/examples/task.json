@@ -1,0 +1,7 @@
+{
+  "action": "report.request",
+  "project": "竹林湖泵站安全监测",
+  "report_date": "2026-11-24",
+  "points": "见附件 k12.json",
+  "requirement": "根据校核结果写 200 字左右的本期结论，指出异常测点与可能原因"
+}

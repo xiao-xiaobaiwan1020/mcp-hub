@@ -1,0 +1,9 @@
+{
+  "name": "MiniMax Code",
+  "topics": ["report"],
+  "capabilities": ["code", "report"],
+  "metadata": {
+    "app": "MiniMax Code",
+    "owner": "肖先生"
+  }
+}

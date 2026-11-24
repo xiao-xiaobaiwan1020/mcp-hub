@@ -1,0 +1,66 @@
+{
+  "project": "竹林湖泵站安全监测",
+  "report_date": "2026-11-24",
+  "points": [
+    {
+      "id": "K12-1",
+      "name": "K12+300 左岸坡顶水平位移",
+      "unit": "mm",
+      "warn_rate": 0.5,
+      "warn_total": 15,
+      "readings": [
+        { "date": "2026-11-18", "value": 12.4 },
+        { "date": "2026-11-21", "value": 13.1 },
+        { "date": "2026-11-24", "value": 13.9 }
+      ]
+    },
+    {
+      "id": "K12-2",
+      "name": "K12+300 左岸坡脚水平位移",
+      "unit": "mm",
+      "warn_rate": 0.5,
+      "warn_total": 15,
+      "readings": [
+        { "date": "2026-11-18", "value": 8.2 },
+        { "date": "2026-11-21", "value": 8.6 },
+        { "date": "2026-11-24", "value": 9.0 }
+      ]
+    },
+    {
+      "id": "K12-3",
+      "name": "K12+300 右岸坡顶沉降",
+      "unit": "mm",
+      "warn_rate": 0.5,
+      "warn_total": 15,
+      "readings": [
+        { "date": "2026-11-18", "value": -3.1 },
+        { "date": "2026-11-21", "value": -3.4 },
+        { "date": "2026-11-24", "value": -3.8 }
+      ]
+    },
+    {
+      "id": "K12-4",
+      "name": "K12+400 深层水平位移（孔口）",
+      "unit": "mm",
+      "warn_rate": 0.5,
+      "warn_total": 3.0,
+      "readings": [
+        { "date": "2026-11-18", "value": 5.0 },
+        { "date": "2026-11-21", "value": 6.1 },
+        { "date": "2026-11-24", "value": 8.7 }
+      ]
+    },
+    {
+      "id": "K12-5",
+      "name": "K12+400 地下水位",
+      "unit": "m",
+      "warn_rate": 0.2,
+      "warn_total": 1.0,
+      "readings": [
+        { "date": "2026-11-18", "value": 3.42 },
+        { "date": "2026-11-21", "value": 3.35 },
+        { "date": "2026-11-24", "value": 3.31 }
+      ]
+    }
+  ]
+}

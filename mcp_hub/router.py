@@ -17,7 +17,7 @@ from .bus import MessageBus
 from .config import HubConfig
 from .logging_setup import get_logger
 from .metrics import Metrics
-from .models import AgentStatus, DeliveryReport, Envelope, MessageType
+from .models import DeliveryReport, Envelope, MessageType
 from .registry import AgentRegistry
 
 log = get_logger("mcp_hub.router")
@@ -96,8 +96,9 @@ class Router:
                 return [], []
             return self._registry.topic_subscribers(topic_name), []
 
-        # direct
+        # direct：只要 Agent 注册过就入队（心跳过期也保留，等它下次拉取时取走）
+        # 只有从未注册 / 已被清理的 agent_id 才算 dropped
         view = self._registry.get(target)
-        if view is None or view.status == AgentStatus.OFFLINE:
+        if view is None:
             return [], [target]
         return [target], []

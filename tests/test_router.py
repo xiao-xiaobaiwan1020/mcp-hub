@@ -76,6 +76,19 @@ async def test_queue_overflow_drops_oldest(router_env) -> None:
     assert messages[-1].payload == {"i": 11}
 
 
+async def test_direct_message_to_offline_agent_is_queued(router_env) -> None:
+    """心跳过期只影响 online 展示，点对点消息仍应入队等它下次拉取。"""
+    router, registry, bus, _ = router_env
+    registry._agents["b"].last_seen -= 10_000  # noqa: SLF001 - 测试用
+    await registry.mark_stale()
+    assert registry.get("b").online is False
+
+    report = await router.send("a", "b", {"queued": True})
+    assert report.delivered == ["b"]
+    assert report.dropped == []
+    assert bus.pending_size("b") == 1
+
+
 async def test_sink_receives_messages(router_env) -> None:
     router, _, bus, _ = router_env
     import asyncio
